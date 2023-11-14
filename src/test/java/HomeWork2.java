@@ -3,6 +3,9 @@ import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+
 import java.lang.Thread;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,7 +54,7 @@ public class HomeWork2 {
         }
         System.out.println("Колличество редиректов "+count);
     }
-    
+
     @Test
     public void TestToken() {
         JsonPath responseGetToken= RestAssured
@@ -85,7 +88,32 @@ public class HomeWork2 {
                 responseGetResult.prettyPrint();
             }
             else System.out.println("Error");
-
         }
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/data1.csv")
+    public void TestSearchPassword(String pass)
+    {
+        Map<String,String> data=new HashMap<>();
+        data.put("login","super_admin");
+        data.put("password",pass);
+        Response response= RestAssured
+                .given()
+                .body(data)
+                .when()
+                .post("https://playground.learnqa.ru/ajax/api/get_secret_password_homework")
+                .andReturn();
+        String auth_cookie=response.getCookie("auth_cookie");
+        Map<String,String> cookie=new HashMap<>();
+        cookie.put("auth_cookie",auth_cookie);
+        Response response1= RestAssured
+                .given()
+                .body(data)
+                .cookies(cookie)
+                .when()
+                .post("https://playground.learnqa.ru/ajax/api/check_auth_cookie").andReturn();
+        if(!response1.asString().equals("You are NOT authorized")){System.out.println("Right pass : "+pass);}
+        else System.out.print("");
     }
 }
