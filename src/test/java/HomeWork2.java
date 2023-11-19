@@ -5,10 +5,13 @@ import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.lang.Thread;
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class HomeWork2 {
@@ -115,5 +118,12 @@ public class HomeWork2 {
                 .post("https://playground.learnqa.ru/ajax/api/check_auth_cookie").andReturn();
         if(!response1.asString().equals("You are NOT authorized")){System.out.println("Right pass : "+pass);}
         else System.out.print("");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"мама мыла раму.","1234567890123456"})
+    public void TestForString15(String str)
+    {
+        assertTrue(str.length()>15,"Текст меньше 15 символов");
     }
 }
