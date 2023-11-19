@@ -11,6 +11,7 @@ import java.lang.Thread;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -125,5 +126,17 @@ public class HomeWork2 {
     public void TestForString15(String str)
     {
         assertTrue(str.length()>15,"Текст меньше 15 символов");
+    }
+    @Test
+    public void testForCocckie(){
+        Response responseGetAuth = RestAssured
+                .given()
+                .get("https://playground.learnqa.ru/api/homework_cookie")
+                .andReturn();
+        assertEquals(200, responseGetAuth.statusCode(), "Unexpected status code");
+        Map<String,String> cookies=new HashMap<>();
+        cookies=responseGetAuth.getCookies();
+        assertTrue(cookies.containsKey("HomeWork"),"Response doesn't have cookie 'HomeWork'");
+        assertEquals("hw_value",cookies.get("HomeWork"),"Unexpected value for cookie 'HomeWork'");
     }
 }
