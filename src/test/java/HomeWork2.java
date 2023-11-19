@@ -139,4 +139,17 @@ public class HomeWork2 {
         assertTrue(cookies.containsKey("HomeWork"),"Response doesn't have cookie 'HomeWork'");
         assertEquals("hw_value",cookies.get("HomeWork"),"Unexpected value for cookie 'HomeWork'");
     }
+
+    @Test
+    public void testForHeaders(){
+        Map<String, String> data = new HashMap<>();
+        Response responseGetAuth = RestAssured
+                .given()
+                .get(" https://playground.learnqa.ru/api/homework_header")
+                .andReturn();
+        assertEquals(200, responseGetAuth.statusCode(), "Unexpected status code");
+        Headers headers=responseGetAuth.getHeaders();
+        assertTrue(headers.hasHeaderWithName("x-secret-homework-header"),"Response doesn't have  header 'x-csrf-token header'");
+        assertEquals("Some secret value", headers.getValue("x-secret-homework-header"), "Unexpected value for header 'x-secret-homework-header'");
+    }
 }
