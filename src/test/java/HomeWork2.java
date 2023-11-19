@@ -128,7 +128,7 @@ public class HomeWork2 {
         assertTrue(str.length()>15,"Текст меньше 15 символов");
     }
     @Test
-    public void testForCocckie(){
+    public void testForCookies(){
         Response responseGetAuth = RestAssured
                 .given()
                 .get("https://playground.learnqa.ru/api/homework_cookie")
