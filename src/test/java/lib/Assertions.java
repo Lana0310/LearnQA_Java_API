@@ -36,4 +36,10 @@ public class Assertions {
             Assertions.assertJsonHasKey(Response,expectedValue);
         }
     }
+
+    public static void assertJsonHasNotFields(Response Response,String[] expectedValues){
+        for(String expectedValue:expectedValues) {
+            Assertions.assertJsonHasNotKey(Response,expectedValue);
+        }
+    }
 }
