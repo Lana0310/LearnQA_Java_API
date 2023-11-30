@@ -20,6 +20,11 @@ public class Assertions {
     public static void assertResponseTextEquals(Response Response,String expectedValue){
         assertEquals(expectedValue,Response.asString(),"Response text is not expected");
     }
+    public static void assertResponseTextContains(Response Response,String expectedValue){
+        //assertTrue(Response.asPrettyString().equals(expectedValue),"Response text is not expected");
+        assertEquals(true,Response.asString().contains(expectedValue),"Response text is not expected");
+    }
+
     public static void assertResponseCodeEquals(Response Response,int expectedValue){
         assertEquals(expectedValue,Response.statusCode(),"Response statusCode is not expected");
     }
