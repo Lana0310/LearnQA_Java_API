@@ -22,7 +22,7 @@ public class Assertions {
     }
     public static void assertResponseTextContains(Response Response,String expectedValue){
         //assertTrue(Response.asPrettyString().equals(expectedValue),"Response text is not expected");
-        assertEquals(true,Response.asString().contains(expectedValue),"Response text is not expected");
+        assertEquals(true,Response.asString().contains(expectedValue),"Response text doesn't contains expected text");
     }
 
     public static void assertResponseCodeEquals(Response Response,int expectedValue){
