@@ -1,4 +1,5 @@
 package tests;
+import io.qameta.allure.*;
 import lib.Assertions;
 import lib.BaseTestCase;
 import lib.ApiCoreRequests;
@@ -13,9 +14,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.HashMap;
 import java.util.Map;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
 import org.junit.jupiter.api.DisplayName;
 
 @Epic("Authorization cases")
@@ -39,6 +37,8 @@ public class UserAuthTest extends BaseTestCase {
     }
 
     @Test
+    @Owner(value = "Сидоров Валерий Иванович")
+    @Severity(value = SeverityLevel.BLOCKER)
     @Description("This test  successfully authorize user by email and password")
     @DisplayName("Test  positive auth user")
     public void testAuthUser() {
@@ -48,6 +48,8 @@ public class UserAuthTest extends BaseTestCase {
         Assertions.assertJsonByName(responseCheckAuth,"user_id",this.userIdOnAuth);
     }
 
+    @Owner(value = "Сидоров Валерий Иванович")
+    @Severity(value = SeverityLevel.MINOR)
     @Description("This test check authorization status w/o sending auth cookie or header")
     @DisplayName("Test negative auth user")
     @ParameterizedTest

@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
@@ -10,6 +8,8 @@ import lib.Assertions;
 import lib.BaseTestCase;
 import lib.DataGenerator;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -22,6 +22,8 @@ import java.util.Map;
 public class UserRegisterTests extends BaseTestCase {
     ApiCoreRequests apiCoreRequests=new ApiCoreRequests();
     @Test
+    @Owner(value = "Пупкин Валерий Иванович")
+    @Severity(value = SeverityLevel.NORMAL)
     @Description("This negative test, user is already exist ")
     @DisplayName("Test negative create user")
     public void testCreateUserWithExistingEmail()
@@ -41,6 +43,9 @@ public class UserRegisterTests extends BaseTestCase {
     }
 
     @Test
+    @Severity(value = SeverityLevel.BLOCKER)
+    @Owner(value = "Пупкин Валерий Иванович")
+    @Tags(@Tag("create"))
     @Description("This test  successfully create new user")
     @DisplayName("Test  positive create user")
     public void testCreateUserSuccessfully()
@@ -58,6 +63,8 @@ public class UserRegisterTests extends BaseTestCase {
     }
 
     @Test
+    @Owner(value = "Пупкин Валерий Иванович")
+    @Severity(value = SeverityLevel.CRITICAL)
     @Description("This negative test, incorrect email")
     @DisplayName("Test negative create user email without @")
     public void testCreateUserWithIncorrectEmail()
@@ -72,6 +79,8 @@ public class UserRegisterTests extends BaseTestCase {
     }
 
     @Test
+    @Owner(value = "Пупкин Валерий Иванович")
+    @Severity(value = SeverityLevel.MINOR)
     @Description("This negative test, very short name")
     @DisplayName("Test negative create user name 1 symbol")
     public void testCreateUserWithShortName()
@@ -86,6 +95,8 @@ public class UserRegisterTests extends BaseTestCase {
     }
 
     @Test
+    @Owner(value = "Пупкин Валерий Иванович")
+    @Severity(value = SeverityLevel.MINOR)
     @Description("This negative test, long name")
     @DisplayName("Test negative create user name 255 symbol")
     public void testCreateUserWithLongName()
@@ -100,6 +111,8 @@ public class UserRegisterTests extends BaseTestCase {
         Assertions.assertResponseTextEquals(response,"The value of 'firstName' field is too long");
     }
 
+    @Owner(value = "Пупкин Валерий Иванович")
+    @Severity(value = SeverityLevel.CRITICAL)
     @Description("This negative test, some field is empty")
     @DisplayName("Test negative create user without field")
     @ParameterizedTest

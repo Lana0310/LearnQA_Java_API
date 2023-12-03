@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -22,6 +20,12 @@ public class UserEditTests extends BaseTestCase {
     ApiCoreRequests apiCoreRequests=new ApiCoreRequests();
 
     @Test
+    @Issue(value = "JIRA-4627")
+    @TmsLinks({@TmsLink(value = "TL-135")})
+    @Owner(value = "Пупкин Валерий Иванович")
+    @Severity(value = SeverityLevel.BLOCKER)
+    @Description("This positive test for edit user")
+    @DisplayName("Edit user data")
     public void testEditJustCreated(){
         //Generate
         Map<String,String> userData= DataGenerator.getRegistrationData();
@@ -62,6 +66,8 @@ public class UserEditTests extends BaseTestCase {
     }
 
     @Test
+    @Owner(value = "Пупкин Валерий Иванович")
+    @Severity(value = SeverityLevel.MINOR)
     @Description("Test edit user data by not authorized user")
     @DisplayName("Test edit info not authorized")
     public void testEditNotAuthorized() {
@@ -83,6 +89,8 @@ public class UserEditTests extends BaseTestCase {
     }
 
     @Test
+    @Owner(value = "Пупкин Валерий Иванович")
+    @Severity(value = SeverityLevel.NORMAL)
     @Description("Test edit user data by another user")
     @DisplayName("Test edit info another user")
     public void testEditAnotherUser() {
@@ -121,6 +129,8 @@ public class UserEditTests extends BaseTestCase {
     }
 
     @Test
+    @Owner(value = "Сидоров Валерий Иванович")
+    @Severity(value = SeverityLevel.CRITICAL)
     @Description("Test edit user email")
     @DisplayName("Test edit user email without @")
     public void testEditEmailUser() {
@@ -153,6 +163,8 @@ public class UserEditTests extends BaseTestCase {
     }
 
     @Test
+    @Owner(value = "Сидоров Валерий Иванович")
+    @Severity(value = SeverityLevel.MINOR)
     @Description("Test edit user firstname")
     @DisplayName("Test edit user firstname too short")
     public void testEditFirstnameUser() {

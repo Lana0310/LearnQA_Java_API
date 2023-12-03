@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
@@ -20,6 +18,10 @@ import java.util.Map;
 public class UserGetTests extends BaseTestCase {
     ApiCoreRequests apiCoreRequests=new ApiCoreRequests();
     @Test
+    @Owner(value = "Пупкин Валерий Иванович")
+    @Severity(value = SeverityLevel.MINOR)
+    @Description("This negative test, not authorize user")
+    @DisplayName("Get user data with out authorization")
     public void testGetUserDataNotAuth(){
         Response response= RestAssured
                 .get("https://playground.learnqa.ru/api/user/2")
@@ -31,6 +33,10 @@ public class UserGetTests extends BaseTestCase {
     }
 
     @Test
+    @Owner(value = "Пупкин Валерий Иванович")
+    @Severity(value = SeverityLevel.CRITICAL)
+    @Description("This positive test, not authorize user")
+    @DisplayName("Get user data")
     public void testGetUserDetailsAuthAsSameUse(){
         String email="vinkotov@example.com";
         Map<String,String> userData=new HashMap<>();
@@ -54,6 +60,8 @@ public class UserGetTests extends BaseTestCase {
     }
 
     @Test
+    @Owner(value = "Пупкин Валерий Иванович")
+    @Severity(value = SeverityLevel.MINOR)
     @Description("Test get user data by another user")
     @DisplayName("Test get info another user")
     public void testGetInfoByAnotherUser()
@@ -70,7 +78,7 @@ public class UserGetTests extends BaseTestCase {
                 "https://playground.learnqa.ru/api/user/login",userData);
         Assertions.assertJsonHasKey(responseLogin,"user_id");
 
-        //Get MyUser info about user id=2
+        //Get MyUser info about 2
         String url="https://playground.learnqa.ru/api/user/"+"2";
         Response responseAuth =apiCoreRequests.makeGetRequests(
                 url,

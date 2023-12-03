@@ -1,14 +1,14 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
 import lib.BaseTestCase;
 import lib.DataGenerator;
 
+import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +21,8 @@ public class UserDeleteTest extends BaseTestCase {
     ApiCoreRequests apiCoreRequests=new ApiCoreRequests();
 
     @Test
+    @Owner(value = "Сидоров Валерий Иванович")
+    @Severity(value = SeverityLevel.CRITICAL)
     @Description("Test delete user positive")
     @DisplayName("Test create user then delete")
     public void testDeleteUser()
@@ -54,6 +56,8 @@ public class UserDeleteTest extends BaseTestCase {
     }
 
     @Test
+    @Owner(value = "Сидоров Валерий Иванович")
+    @Severity(value = SeverityLevel.BLOCKER)
     @Description("Test delete user id=2")
     @DisplayName("Test delete superuser")
     public void testDeleteSuperUser()
@@ -85,6 +89,9 @@ public class UserDeleteTest extends BaseTestCase {
     }
 
     @Test
+    @Disabled("only just for allure")
+    @Owner(value = "Сидоров Валерий Иванович")
+    @Severity(value = SeverityLevel.CRITICAL)
     @Description("Test delete another user")
     @DisplayName("Test delete another user")
     public void testDeleteAnotherUser()
